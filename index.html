@@ -136,24 +136,23 @@
         });
     </script>
         <script>
-        // Logika untuk membuka dan menutup laci menu
-        const menuToggle = document.getElementById('menuToggle');
-        const navDrawer = document.getElementById('navDrawer');
+        // Logika Baru Buka Tutup Laci Menu
+const menuToggle = document.getElementById('menuToggle');
+const navDrawer = document.getElementById('navDrawer');
 
-        menuToggle.addEventListener('click', () => {
-            // Menambah atau menghapus kelas 'active' pada laci dan tombol
-            navDrawer.classList.toggle('active');
-            menuToggle.classList.toggle('open');
-        });
+menuToggle.addEventListener('click', () => {
+    navDrawer.classList.toggle('active');
+    menuToggle.classList.toggle('open'); // Memicu animasi silang (X)
+});
 
-        // Menutup menu otomatis jika salah satu link diklik
-        const navLinks = document.querySelectorAll('.nav-drawer a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navDrawer.classList.remove('active');
-                menuToggle.classList.remove('open');
-            });
-        });
-        </script>
+// Tutup menu otomatis jika salah satu link diklik
+const navLinks = document.querySelectorAll('.menu-list a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navDrawer.classList.remove('active');
+        menuToggle.classList.remove('open');
+ });
+});
+</script>
 </body>
 </html>
