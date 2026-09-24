@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasa Service AC Batam | Bergaransi & Terpercaya</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0284c7">
+    <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+
+    <header>
+        <h1>❄️ Service AC Batam</h1>
+        <p>Solusi AC Dingin & Hemat Energi di Kota Batam</p>
+        <button id="installBtn" style="display: none;">Instal Aplikasi</button>
+    </header>
+
+    <main>
+        <!-- Fitur Layanan -->
+        <section class="services">
+            <h2>Layanan Kami</h2>
+            <div class="grid">
+                <div class="card"><h3>🧼 Cuci AC</h3><p>Pembersihan rutin agar udara bersih dan AC tetap dingin.</p></div>
+                <div class="card"><h3>🧪 Isi Freon</h3><p>Isi ulang freon R32, R410a, atau R22 berkualitas.</p></div>
+                <div class="card"><h3>🛠️ Perbaikan</h3><p>Atasi AC bocor air, tidak dingin, atau berisik.</p></div>
+            </div>
+        </section>
+
+        <!-- Form Order -->
+        <section class="booking">
+            <h2>Pesan Layanan Sekarang</h2>
+            <form id="orderForm">
+                <label for="nama">Nama Lengkap:</label>
+                <input type="text" id="nama" required placeholder="Contoh: Budi">
+
+                <label for="alamat">Alamat di Batam:</label>
+                <input type="text" id="alamat" required placeholder="Contoh: Perum Indah, Batam Center">
+
+                <label for="layanan">Pilih Layanan:</label>
+                <select id="layanan">
+                    <option value="Cuci AC">Cuci AC Routine</option>
+                    <option value="Tambah Freon">Tambah / Isi Freon</option>
+                    <option value="Perbaikan AC">Perbaikan / AC Rusak</option>
+                    <option value="Bongkar Pasang">Bongkar Pasang AC</option>
+                </select>
+
+                <button type="submit" class="btn-submit">Kirim Pesanan via WhatsApp</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Service AC Batam Terbaik. Semua Hak Dilindungi.</p>
+    </footer>
+
+    <script>
+        // Register Service Worker untuk PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('Service Worker terdaftar!', reg))
+                    .catch(err => console.error('Gagal daftar SW', err));
+            });
+        }
+
+        // Logika Tombol Instal PWA
+        let deferredPrompt;
+        const installBtn = document.getElementById('installBtn');
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.style.display = 'block';
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    installBtn.style.display = 'none';
+                }
+                deferredPrompt = null;
+            }
+        });
+
+        // Logika Kirim Form ke WhatsApp
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nama = document.getElementById('nama').value;
+            const alamat = document.getElementById('alamat').value;
+            const layanan = document.getElementById('layanan').value;
+            
+            // Ganti dengan nomor WhatsApp bisnismu (gunakan kode negara 62)
+            const noWhatsapp = "6281234567890"; 
+            
+            const teks = `Halo Service AC Batam, saya ingin memesan layanan:\n\n*Nama:* ${nama}\n*Alamat:* ${alamat}\n*Layanan:* ${layanan}\n\nMohon segera dikonfirmasi ya, terima kasih.`;
+            const url = `https://wa.me{noWhatsapp}?text=${encodeURIComponent(teks)}`;
+            
+            window.open(url, '_blank');
+        });
+    </script>
+</body>
+</html>
