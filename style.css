@@ -178,3 +178,74 @@ body {
     
     cursor: pointer;
 }
+
+/* --- PERBAIKAN FORMULIR PEMESANAN (VERTIKAL & RESPONSIF) --- */
+.booking {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin: 25px 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.booking h2 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    color: #1e293b;
+}
+
+#orderForm {
+    display: flex;
+    flex-direction: column; /* Memaksa semua elemen form tersusun ke bawah */
+    width: 100%;
+}
+
+#orderForm label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    color: #475569;
+    text-align: left;
+}
+
+#orderForm input, 
+#orderForm select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 18px; /* Memberikan jarak aman antar kolom */
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background-color: #f8fafc;
+    color: #1e293b;
+    box-sizing: border-box; /* Memastikan padding tidak merusak lebar kotak */
+}
+
+#orderForm input:focus, 
+#orderForm select:focus {
+    outline: none;
+    border-color: #0284c7;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
+}
+
+/* Desain Premium untuk Tombol WhatsApp */
+.btn-submit {
+    width: 100%;
+    background-color: #22c55e;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(34, 197, 94, 0.3);
+    transition: background-color 0.2s;
+    margin-top: 5px;
+}
+
+.btn-submit:hover {
+    background-color: #16a34a;
+}
+
