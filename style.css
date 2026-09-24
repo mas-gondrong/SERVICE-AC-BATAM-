@@ -179,6 +179,147 @@ body {
     cursor: pointer;
 }
 
+/* --- STYLE KARTU KEUNGGULAN / GARANSI --- */
+.warranty-card {
+    background: #ffffff;
+    margin: 20px 15px;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-left: 5px solid #22c55e; /* Aksen garis hijau sukses */
+}
+
+.card-header-accent {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 12px;
+}
+
+.warranty-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.warranty-list li {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+/* --- STYLE DAFTAR LAYANAN UTAMA (KOTAK-KOTAK) --- */
+.services-container {
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Jarak aman antar kotak layanan */
+}
+
+.service-box {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    border: 1px solid #e2e8f0;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.service-box:active {
+    transform: scale(0.98); /* Efek membal saat ditekan di HP */
+}
+
+.box-icon {
+    font-size: 2rem;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.service-box h3 {
+    font-size: 1.3rem;
+    color: #0284c7; /* Warna biru utama sesuai tema */
+    margin: 0 0 4px 0;
+    font-weight: 700;
+}
+
+.service-box h4 {
+    font-size: 1rem;
+    color: #1e293b;
+    margin: 0 0 10px 0;
+    font-weight: 600;
+}
+
+.service-box p {
+    font-size: 0.95rem;
+    color: #64748b;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* --- STYLE JENIS AC YANG DITANGGANI --- */
+.ac-types-section {
+    background: #f1f5f9;
+    margin: 30px 15px 15px 15px;
+    padding: 20px 15px;
+    border-radius: 20px;
+}
+
+.section-title-box {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.section-title-box h2 {
+    font-size: 1.4rem;
+    color: #1e293b;
+    margin: 0 0 4px 0;
+}
+
+.section-title-box p {
+    font-size: 1rem;
+    color: #0284c7;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+}
+
+.section-title-box small {
+    font-size: 0.85rem;
+    color: #64748b;
+    display: block;
+    line-height: 1.4;
+}
+
+.type-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.type-card {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    border-left: 4px solid #a855f7; /* Aksen ungu mewah senada gradasi atas */
+}
+
+.type-card h5 {
+    font-size: 1rem;
+    color: #1e293b;
+    margin: 0 0 4px 0;
+    font-weight: 700;
+}
+
+.type-card p {
+    font-size: 0.88rem;
+    color: #64748b;
+    margin: 0;
+}
+
 /* --- PERBAIKAN FORMULIR PEMESANAN (VERTIKAL & RESPONSIF) --- */
 .booking {
     background: white;
@@ -248,4 +389,3 @@ body {
 .btn-submit:hover {
     background-color: #16a34a;
 }
-
