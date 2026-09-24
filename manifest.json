@@ -2,7 +2,7 @@
   "name": "Jasa Service AC Batam",
   "short_name": "Service AC",
   "description": "Jasa Service dan Cuci AC Bergaransi di Kota Batam",
-  "start_url": "/",
+  "start_url": "/SERVICE-AC-BATAM-/",
   "display": "standalone",
   "background_color": "#f8fafc",
   "theme_color": "#0284c7",
