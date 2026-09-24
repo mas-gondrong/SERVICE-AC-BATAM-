@@ -11,24 +11,27 @@
 </head>
 <body>
 
-        <!-- Header Utama & Navigasi -->
+  <!-- Wadah Utama Penyatuan Warna Atas -->
+<div class="top-app-wrapper">
+    
+    <!-- Header Mengambang -->
     <header class="main-header">
         <div class="navbar-top">
-            <!-- Foto Bulat di Sebelah Kiri -->
+            <!-- Foto Bulat Kiri -->
             <div class="profile-area">
                 <img src="icon-192.png" alt="Logo" class="avatar-logo">
             </div>
-            <!-- Menu Garis Tiga di Sebelah Kanan -->
-            <button class="menu-toggle" id="menuToggle" aria-label="Buka Menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+            <!-- Perbaikan Tombol Garis Tiga Kanan -->
+            <button class="hamburger-menu" id="menuToggle" aria-label="Buka Menu">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
             </button>
         </div>
 
-        <!-- Laci Navigasi yang Muncul dari Bawah Header -->
+        <!-- Laci Navigasi (Diturunkan dan Diberi Ruang Aman) -->
         <nav class="nav-drawer" id="navDrawer">
-            <ul>
+            <ul class="menu-list">
                 <li><a href="#beranda">🏠 Beranda</a></li>
                 <li><a href="#layanan">🛠️ Layanan</a></li>
                 <li><a href="#galery">📸 Galery</a></li>
@@ -39,13 +42,15 @@
         </nav>
     </header>
 
-    <!-- Banner Hero (Judul Service AC Batam) -->
+    <!-- Judul Banner Terintegrasi -->
     <section class="hero-banner" id="beranda">
         <h1>❄️ Service AC Batam</h1>
         <p>Solusi AC Dingin & Hemat Energi di Kota Batam</p>
         <button id="installBtn" style="display: none;">Instal Aplikasi</button>
     </section>
 
+</div>
+    
     <main>
         <!-- Fitur Layanan -->
         <section class="services">
