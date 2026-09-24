@@ -72,3 +72,117 @@ footer {
     font-size: 0.8rem;
     color: #64748b;
 }
+
+/* Styling Header Utama & Navbar */
+.main-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.navbar-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    height: 50px;
+    background-color: #ffffff;
+    position: relative;
+    z-index: 1001; /* Berada di atas laci navigasi */
+}
+
+/* Foto Bulat di Kiri */
+.avatar-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #0284c7;
+}
+
+/* Tombol Menu Garis Tiga di Kanan */
+.menu-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 26px;
+    height: 20px;
+    padding: 0;
+}
+
+.menu-toggle .bar {
+    width: 100%;
+    height: 3px;
+    background-color: #0284c7;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Animasi Mengubah Garis Tiga Menjadi Silang (X) Saat Diklik */
+.menu-toggle.open .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.menu-toggle.open .bar:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.open .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Laci Navigasi (Efek Keluar dari Bawah Header) */
+.nav-drawer {
+    position: absolute;
+    top: 70px; /* Tepat di bawah navbar-top (50px tinggi + 20px padding) */
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    
+    /* Inti Animasi Laci Tarik Turun */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+}
+
+/* Ketika Laci Aktif Terbuka */
+.nav-drawer.active {
+    max-height: 350px; /* Sesuaikan dengan tinggi total menu */
+}
+
+.nav-drawer ul {
+    list-style: none;
+    margin: 0;
+    padding: 10px 0;
+}
+
+.nav-drawer li {
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.nav-drawer a {
+    display: block;
+    padding: 12px 25px;
+    color: #1e293b;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: background 0.2s;
+}
+
+.nav-drawer a:hover {
+    background-color: #f1f5f9;
+    color: #0284c7;
+}
+
+/* Penyesuaian Tampilan Banner Biru (Hero) */
+.hero-banner {
+    background: linear-gradient(135deg, #0284c7, #0369a1);
+    color: white;
+    text-align: center;
+    padding: 3rem 1rem;
+}
