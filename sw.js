@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ac-service-v9';
+const CACHE_NAME = 'ac-service-v10';
 const ASSETS = [
   '/',
   '/index.html',
