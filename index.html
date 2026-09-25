@@ -161,6 +161,22 @@
         </section>
     </main>
 
+        <!-- ==================== STRUKTUR POPUP FULLSCREEN (MODAL) ==================== -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-container">
+            <!-- Header Popup Tetap/Sticky -->
+            <div class="popup-header">
+                <button class="btn-back" id="closePopupBtn">⬅️ Kembali</button>
+                <h2 id="popupTitle">Detail Halaman</h2>
+            </div>
+            
+            <!-- Konten Dinamis yang Berubah Sesuai Menu yang Diklik -->
+            <div class="popup-content" id="popupContent">
+                <!-- Isi Konten diinjeksi via JavaScript -->
+            </div>
+        </div>
+    </div>
+
     <footer>
         <p>&copy; 2026 Service AC Batam Terbaik. Semua Hak Dilindungi.</p>
     </footer>
@@ -212,23 +228,151 @@
         });
     </script>
         <script>
-        // Logika Baru Buka Tutup Laci Menu
-const menuToggle = document.getElementById('menuToggle');
-const navDrawer = document.getElementById('navDrawer');
+        // Data Konten Statis & Template untuk Popup
+        const popupData = {
+            layanan: `
+                <div class="content-layanan">
+                    <h3>Jasa Service AC Batam</h3>
+                    <p class="subtitle">Semua kebutuhan perawatan dan perbaikan AC rumah, kos, apartemen, ruko, hingga kantor.</p>
+                    <div class="text-block">
+                        <p>Service AC hadir untuk memberikan pelayanan yang rapi, bersih, dan jujur. Setiap pengerjaan selalu didahului dengan pengecekan lengkap dan penjelasan biaya secara detail.</p>
+                        <p>Kami melayani rumah, kos, apartemen, ruko, hingga kantor dengan teknisi berpengalaman. Pekerjaan dilakukan mengikuti standar kerja yang aman dan efisien.</p>
+                    </div>
+                    <div class="check-list">
+                        <div class="check-item"><span>✅</span> Cuci AC, service AC tidak dingin, AC bocor.</div>
+                        <div class="check-item"><span>✅</span> Bongkar pasang AC & isi freon R22/R32/R410.</div>
+                        <div class="check-item"><span>✅</span> Prioritas kebersihan area kerja setelah selesai.</div>
+                    </div>
+                </div>
+            `,
+            galery: `
+                <div class="content-galery">
+                    <p class="info-note">📷 Dokumentasi Pekerjaan Bongkar Pasang & Perbaikan AC Batam</p>
+                    <!-- Grid Galeri (Koneksi Firebase Siap Pakai) -->
+                    <div class="photo-grid" id="firebaseGalery">
+                        <div class="photo-placeholder">🖼️ Foto Pekerjaan 1</div>
+                        <div class="photo-placeholder">🖼️ Foto Pekerjaan 2</div>
+                        <div class="photo-placeholder">🖼️ Foto Pekerjaan 3</div>
+                        <div class="photo-placeholder">🖼️ Foto Pekerjaan 4</div>
+                    </div>
+                </div>
+            `,
+            ulasan: `
+                <div class="content-ulasan">
+                    <!-- Form Tambah Ulasan -->
+                    <div class="review-form-box">
+                        <h4>💬 Bagikan Pengalaman Anda</h4>
+                        <input type="text" id="revNama" placeholder="Nama Anda" required>
+                        <select id="revBintang">
+                            <option value="5">⭐⭐⭐⭐⭐ (5 Bintang)</option>
+                            <option value="4">⭐⭐⭐⭐ (4 Bintang)</option>
+                            <option value="3">⭐⭐⭐ (3 Bintang)</option>
+                            <option value="2">⭐⭐ (2 Bintang)</option>
+                            <option value="1">⭐ (1 Bintang)</option>
+                        </select>
+                        <textarea id="revTeks" placeholder="Tulis ulasan pelayanan di sini..." rows="3" required></textarea>
+                        <button class="btn-submit-review" onclick="alert('Ulasan tersimpan! (Siap disambungkan ke Firebase)')">Kirim Ulasan</button>
+                    </div>
+                    
+                    <!-- List Tampilan Ulasan Pelanggan -->
+                    <div class="reviews-list" id="firebaseReviews">
+                        <div class="review-card-item">
+                            <h5>Budi Satria (Batam Center)</h5>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <p>"Teknisinya ramah, kerjanya bersih banget. Habis cuci AC langsung dingin nyess kembali!"</p>
+                        </div>
+                        <div class="review-card-item">
+                            <h5>Siti Rahma (Nagoya)</h5>
+                            <div class="stars">⭐⭐⭐⭐⭐</div>
+                            <p>"Bongkar pasang AC cepat dan rapi. Biaya jujur sesuai kesepakatan awal."</p>
+                        </div>
+                    </div>
+                </div>
+            `,
+            tentang: `
+                <div class="content-harga">
+                    <p class="info-note">🏷️ Daftar Estimasi Harga Service AC Batam</p>
+                    <div class="price-box-note">
+                        <strong>(Segera Hadir)</strong><br>
+                        Halaman ini sedang disiapkan untuk konsep daftar harga kotak-kotak premium sesuai rencana Bos!
+                    </div>
+                </div>
+            `,
+            hubungi: `
+                <div class="content-hubungi">
+                    <!-- Kotak Alamat & Maps -->
+                    <div class="contact-box">
+                        <h5>📍 Alamat Kantor Kami</h5>
+                        <p>Perumahan Batam Center Cluster Indah, Blok C No. 12, Kota Batam, Kepulauan Riau</p>
+                        <!-- Ganti link di bawah dengan link Google Maps bisnismu -->
+                        <a href="https://google.com" target="_blank" class="btn-contact-action maps-color">🗺️ Buka di Google Maps</a>
+                    </div>
 
-menuToggle.addEventListener('click', () => {
-    navDrawer.classList.toggle('active');
-    menuToggle.classList.toggle('open'); // Memicu animasi silang (X)
-});
+                    <!-- Kotak WhatsApp -->
+                    <div class="contact-box">
+                        <h5>💬 Hubungi via WhatsApp</h5>
+                        <p>Hubungi Service AC Batam untuk info pemesanan kilat dan konsultasi gratis lebih lanjut.</p>
+                        <a href="https://wa.me" target="_blank" class="btn-contact-action wa-color">📱 Hubungi WhatsApp Admin</a>
+                    </div>
 
-// Tutup menu otomatis jika salah satu link diklik
-const navLinks = document.querySelectorAll('.menu-list a');
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navDrawer.classList.remove('active');
-        menuToggle.classList.remove('open');
- });
-});
-</script>
-</body>
+                    <!-- Kotak Email -->
+                    <div class="contact-box">
+                        <h5>✉️ Kontak via E-mail</h5>
+                        <p>Kirimkan kerja sama proyek, pengaduan, atau penawaran resmi via surat elektronik.</p>
+                        <a href="mailto:serviceacbatam@email.com" class="btn-contact-action email-color">📧 Kirim E-mail Sekarang</a>
+                    </div>
+                </div>
+            `
+        };
+
+        // DOM Elements
+        const menuToggle = document.getElementById('menuToggle');
+        const navDrawer = document.getElementById('navDrawer');
+        const popupOverlay = document.getElementById('popupOverlay');
+        const popupTitle = document.getElementById('popupTitle');
+        const popupContent = document.getElementById('popupContent');
+        const closePopupBtn = document.getElementById('closePopupBtn');
+
+        // Fungsi Buka-Tutup Laci Hamburger Menu
+        menuToggle.addEventListener('click', () => {
+            navDrawer.classList.toggle('active');
+            menuToggle.classList.toggle('open');
+        });
+
+        // Interseptor Link Menu untuk Memicu Popup Fullscreen
+        document.querySelectorAll('.menu-list a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetKey = this.getAttribute('href').replace('#', '');
+                
+                // Jika klik beranda, biarkan dia scroll ke atas default (tutup laci saja)
+                if (targetKey === 'beranda') {
+                    navDrawer.classList.remove('active');
+                    menuToggle.classList.remove('open');
+                    return; 
+                }
+
+                e.preventDefault(); // Cegah loncat halaman kaku
+                
+                // Ambil Judul Bersih Menu
+                const menuText = this.innerText.replace(/[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDD00-\uDFFF]/g, '').trim();
+                
+                // Isi Konten & Tampilkan Popup
+                if (popupData[targetKey]) {
+                    popupTitle.innerText = menuText;
+                    popupContent.innerHTML = popupData[targetKey];
+                    popupOverlay.classList.add('open');
+                }
+
+                // Tutup Laci Menu Otomatis
+                navDrawer.classList.remove('active');
+                menuToggle.classList.remove('open');
+            });
+        });
+
+        // Fungsi Tutup Popup
+        closePopupBtn.addEventListener('click', () => {
+            popupOverlay.classList.remove('open');
+        });
+        </script>
+ </body>
 </html>
